@@ -1,6 +1,8 @@
 package org.example.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -12,19 +14,29 @@ public class FormaPagamento implements Serializable {
     @Column(name = "FPG_ID")
     private Long fpgId;
 
-    @Column(name = "FPG_DESCRICAO")
+    @NotBlank(message = "Descrição é obrigatório")
+    @Size(message = "Descrição inválida")
+    @Column(name = "FPG_DESCRICAO", nullable = false)
     private String fpgDescricao;
 
-    @Column(name = "FPG_ATIVO")
+    @NotBlank(message = "obrigatório")
+    @Size(message = "inválida")
+    @Column(name = "FPG_ATIVO", nullable = false)
     private String fpgAtivo;
 
-    @Column(name = "FPG_PERMITE_PARCELAMENTO")
+    @NotBlank(message = "Permite Parcelamento é obrigatório")
+    @Size(message = "Inválido")
+    @Column(name = "FPG_PERMITE_PARCELAMENTO", nullable = false)
     private Boolean fpgPermiteParcelamento;
 
-    @Column(name = "FPG_NUMERO_MAXIMO_PARCELAS")
+    @NotBlank(message = "obrigatório")
+    @Size(message = "inválida")
+    @Column(name = "FPG_NUMERO_MAXIMO_PARCELAS", nullable = false)
     private Integer fpgNumeroMaximoParcelas;
 
-    @Column(name = "FPG_TAXA_ADICIONAL", precision = 5, scale = 2)
+    @NotBlank(message = "obrigatório")
+    @Size(message = "inválida")
+    @Column(name = "FPG_TAXA_ADICIONAL", precision = 5, scale = 2, nullable = false)
     private BigDecimal fpgTaxaAdicional;
 
     public FormaPagamento() {

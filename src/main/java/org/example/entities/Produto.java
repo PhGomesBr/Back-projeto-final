@@ -1,6 +1,8 @@
 package org.example.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -13,40 +15,64 @@ public class Produto implements Serializable {
     @Column(name = "PRO_ID")
     private Long proId;
 
-    @Column(name = "PRO_NOME")
+    @NotBlank(message = "Nome é obrigatório")
+    @Size(max = 100, message = "Nome inválido, máximo 100 caracterias")
+    @Column(name = "PRO_NOME", nullable = false, length = 100)
     private String proNome;
 
-    @Column(name = "PRO_DESCRICAO", length = 500)
+    @NotBlank(message = "Descrição é obrigatório")
+    @Size(max = 500, message = "Descrição inválido, máximo 100 caracterias")
+    @Column(name = "PRO_DESCRICAO", length = 500, nullable = false)
     private String proDescricao;
 
+    @NotBlank(message = "Preço de custo é obrigatório")
+    @Size(message = "Inválido")
     @Column(name = "PRO_PRECO_CUSTO", precision = 10, scale = 2)
     private BigDecimal proPrecoCusto;
 
-    @Column(name = "PRO_PRECO_VENDA", precision = 10, scale = 2)
+    @NotBlank(message = "Preço de venda é obrigatório")
+    @Size(message = "Inválido")
+    @Column(name = "PRO_PRECO_VENDA", precision = 10, scale = 2, nullable = false)
     private BigDecimal proPrecoVenda;
 
-    @Column(name = "PRO_QUANTIDADE_ESTOQUE")
+    @NotBlank(message = "Quantidade Estoque é obrigatório")
+    @Size(message = "Inválido")
+    @Column(name = "PRO_QUANTIDADE_ESTOQUE", nullable = false)
     private Integer proQuantidadeEstoque;
 
-    @Column(name = "PRO_CATEGORIA")
+    @NotBlank(message = "Categoria é obrigatório")
+    @Size(max = 50, message = "Categoria inválida, máximo de 50 caracterias")
+    @Column(name = "PRO_CATEGORIA", nullable = false, length = 50)
     private String proCategoria;
 
-    @Column(name = "PRO_CODIGO_BARRAS")
+    @NotBlank(message = "Código de barras é obrigatório")
+    @Size(message = "Inválido")
+    @Column(name = "PRO_CODIGO_BARRAS", nullable = false)
     private String proCodigoBarras;
 
-    @Column(name = "PRO_MARCA")
+    @NotBlank(message = "Marca é obrigatório")
+    @Size(max = 100, message = "Marca inválido, deve ter no máximo 100 caracteres")
+    @Column(name = "PRO_MARCA", nullable = false, length = 100)
     private String proMarca;
 
-    @Column(name = "PRO_UNIDADE_MEDIDA")
+    @NotBlank(message = "Unidade de Medida é obrigatório")
+    @Size(max = 20, message = "Inválido")
+    @Column(name = "PRO_UNIDADE_MEDIDA", nullable = false,length = 20)
     private String proUnidadeMedida;
 
-    @Column(name = "PRO_ATIVO")
+    @NotBlank(message = "obrigatório")
+    @Size(message = "Inválido")
+    @Column(name = "PRO_ATIVO", nullable = false)
     private String proAtivo;
 
-    @Column(name = "PRO_DATA_CADASTRO")
+    @NotBlank(message = "Data de cadastro é obrigatório")
+    @Size(max = 10, message = "Data de cadastro inválido, deve ter no máximo 10 caracteres")
+    @Column(name = "PRO_DATA_CADASTRO",nullable = false, length = 10)
     private LocalDateTime proDataCadastro;
 
-    @Column(name = "PRO_DATA_ATUALIZACAO")
+    @NotBlank(message = "Data de atualização é obrigatório")
+    @Size(max = 10, message = "Data de atualização iválido, deve ter no máximo 10 caracteres")
+    @Column(name = "PRO_DATA_ATUALIZACAO", nullable = false, length = 10)
     private LocalDateTime proDataAtualizacao;
 
     public Produto() {

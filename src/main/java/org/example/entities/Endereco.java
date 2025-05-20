@@ -1,6 +1,8 @@
 package org.example.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Entity
@@ -11,19 +13,29 @@ public class Endereco implements Serializable {
     @Column(name = "END_ID")
     private Long endId;
 
-    @Column(name = "END_RUA")
+    @NotBlank(message = "Rua é obrigatório")
+    @Size(max = 150, message = "Rua deve ter no máximo 150 caracteres")
+    @Column(name = "END_RUA", nullable = false, length = 150)
     private String endRua;
 
-    @Column(name = "END_NUMERO")
+    @NotBlank(message = "E-mail é obrigatório")
+    @Size(max = 10, message = "Número inválido")
+    @Column(name = "END_NUMERO", nullable = false, length = 10)
     private String endNumero;
 
-    @Column(name = "END_CIDADE")
+    @NotBlank(message = "Cidade é obrigatório")
+    @Size(max = 100, message = "E-mail deve ter no máximo 100 caracteres")
+    @Column(name = "END_CIDADE", nullable = false, length = 100)
     private String endCidade;
 
-    @Column(name = "END_CEP", length = 8)
+    @NotBlank(message = "E-mail é obrigatório")
+    @Size(max = 8, message = "E-mail deve ter no máximo 100 caracteres")
+    @Column(name = "END_CEP", length = 8, nullable = false)
     private String endCep;
 
-    @Column(name = "END_ESTADO", length = 2)
+    @NotBlank(message = "Estado é obrigatório")
+    @Size(message = "Estado deve ter no máximo 100 caracteres")
+    @Column(name = "END_ESTADO", length = 100, nullable = false)
     private String endEstado;
 
     public Endereco() {
